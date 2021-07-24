@@ -1,0 +1,59 @@
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Mask, DBCtrls, DB, DBTables;
+
+type
+  TForm2 = class(TForm)
+    Query1: TQuery;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    btngravar: TButton;
+    btncancelar: TButton;
+    DataSource1: TDataSource;
+    procedure btncancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    icodigo: integer;
+  public
+    { Public declarations }
+    property codigo: integer read icodigo write icodigo;
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.FormShow(Sender: TObject);
+begin
+  query1.Close;
+  query1.SQL.Text:=
+      'select * ' +
+      'from cliente.dbf ' +
+      'where codigo = ' + inttostr(codigo);
+  query1.Open;
+end;
+
+procedure TForm2.btncancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
+end;
+
+end.

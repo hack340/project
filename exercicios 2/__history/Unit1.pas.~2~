@@ -1,0 +1,66 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ZConnection, StdCtrls, Grids, DBGrids, DB, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset;
+
+type
+  TForm1 = class(TForm)
+    ZConnection1: TZConnection;
+    btnConectar: TButton;
+    ZQuery1: TZQuery;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    btnIncluir: TButton;
+    btnAlterar: TButton;
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnConectarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses Unit2;
+
+{$R *.dfm}
+
+procedure TForm1.btnConectarClick(Sender: TObject);
+begin
+   ZConnection1.Connect;
+
+   ZQuery1.Close;
+   ZQuery1.SQL.Text :=
+      'select * from cliente';
+   ZQuery1.Open;
+
+end;
+
+procedure TForm1.btnIncluirClick(Sender: TObject);
+begin
+   //INCLUIR
+   Application.CreateForm(TForm2,Form2);
+   Form2.Codigo := 0;
+   Form2.ShowModal;
+   Form2.Free;
+end;
+
+procedure TForm1.btnAlterarClick(Sender: TObject);
+begin
+   //ALTERAR
+   Application.CreateForm(TForm2,Form2);
+   Form2.Codigo := ZQuery1.FieldByName('codigo').AsInteger;
+   Form2.ShowModal;
+   Form2.Free;
+end;
+
+end.

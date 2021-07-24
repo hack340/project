@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=User()
+comment1.params=id\ nome\ observacao
+comment1.target=User(java.lang.Integer,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.Integer\ getId()
+comment3.params=
+comment3.target=java.lang.String\ getNome()
+comment4.params=
+comment4.target=java.lang.String\ getObservacao()
+comment5.params=id
+comment5.target=void\ setId(java.lang.Integer)
+comment6.params=nm
+comment6.target=void\ setNome(java.lang.String)
+comment7.params=obs
+comment7.target=void\ setObservacao(java.lang.String)
+comment8.params=
+comment8.target=void\ Mostra()
+numComments=9

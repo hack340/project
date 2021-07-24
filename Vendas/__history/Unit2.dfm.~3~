@@ -1,0 +1,88 @@
+object F_produtos: TF_produtos
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Produtos'
+  ClientHeight = 453
+  ClientWidth = 765
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 16
+  object stBar2: TStatusBar
+    Left = 0
+    Top = 434
+    Width = 765
+    Height = 19
+    Panels = <>
+  end
+  object pagecon_produtos: TPageControl
+    Left = 0
+    Top = 0
+    Width = 765
+    Height = 434
+    ActivePage = Consultar
+    Align = alClient
+    TabOrder = 1
+    TabWidth = 150
+    object Consultar: TTabSheet
+      Caption = 'Consultar'
+      object dbgrd1: TDBGrid
+        Left = 0
+        Top = 160
+        Width = 757
+        Height = 243
+        Align = alBottom
+        DataSource = dm.ds_listarProdutos
+        TabOrder = 0
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'Arial'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'pro_id'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'pro_nome'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'pro_barra'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'pro_custo'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'pro_preco'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'pro_estoque'
+            Visible = True
+          end>
+      end
+    end
+    object pagecon_cadastrar: TTabSheet
+      Caption = 'Cadastrar / Editar'
+      ImageIndex = 1
+    end
+  end
+end

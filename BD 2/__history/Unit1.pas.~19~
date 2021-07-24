@@ -1,0 +1,68 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ZConnection, StdCtrls, DB, ZAbstractRODataset, ZAbstractDataset,
+  ZDataset, Grids, DBGrids, unit2;
+
+type
+  TForm1 = class(TForm)
+    ZConnection1: TZConnection;
+    btnconectar: TButton;
+    ZQuery1: TZQuery;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    btnnovo: TButton;
+    btnalterar: TButton;
+    procedure btnalterarClick(Sender: TObject);
+    procedure btnnovoClick(Sender: TObject);
+    procedure btnconectarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnconectarClick(Sender: TObject);
+begin
+    ZConnection1.connect;
+
+    ZQuery1.close;
+    ZQuery1.sql.text :=
+        'select * from cliente';
+    ZQuery1.open;
+
+
+
+end;
+
+procedure TForm1.btnnovoClick(Sender: TObject);
+begin
+    application.CreateForm(tform2, form2);
+    form2.codigo := 0;
+    form2.ShowModal;
+    if form2.ModalResult = mrok then
+    begin
+    Zquery1.Refresh;
+    end;
+    form2.free;
+end;
+
+procedure TForm1.btnalterarClick(Sender: TObject);
+begin
+    application.CreateForm(tform2, form2);
+    form2.codigo := zquery1.FieldByName('codigo').asinteger;
+    form2.ShowModal;
+    form2.free;
+end;
+
+end.

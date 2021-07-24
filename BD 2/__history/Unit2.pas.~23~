@@ -1,0 +1,168 @@
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, ExtCtrls,
+  StdCtrls, Mask;
+
+type
+  TForm2 = class(TForm)
+    ZQuery1: TZQuery;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    edcodigo: TEdit;
+    ednome: TEdit;
+    edendereco: TEdit;
+    metelefone: TMaskEdit;
+    menascimento: TMaskEdit;
+    btngravar: TButton;
+    btncancelar: TButton;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    Label6: TLabel;
+    edcidade: TEdit;
+    eduf: TEdit;
+    Label7: TLabel;
+    Label8: TLabel;
+    ComboBox1: TComboBox;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edcodigoKeyPress(Sender: TObject; var Key: Char);
+    procedure btngravarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btncancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+    icodigo: integer;
+  public
+    { Public declarations }
+    property codigo: integer read icodigo write icodigo;
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm2.btncancelarClick(Sender: TObject);
+begin
+    //forma mais "elegante" para CLOSE;
+    modalresult := mrcancel;
+end;
+
+procedure TForm2.FormShow(Sender: TObject);
+begin
+  ZQuery1.Close;
+  Zquery1.sql.Text :=
+      'select * ' +
+      'from cliente ' +
+      'where codigo = ' + inttostr(codigo);
+  Zquery1.open;
+
+  edcodigo.text := Zquery1.FieldByName('codigo').AsString;
+  ednome.text := Zquery1.FieldByName('nome').AsString;
+  edendereco.text := Zquery1.FieldByName('endereco').AsString;
+  metelefone.text := Zquery1.FieldByName('telefone').AsString;
+  menascimento.text := Zquery1.FieldByName('nascimento').AsString;
+
+
+
+
+end;
+
+procedure TForm2.btngravarClick(Sender: TObject);
+begin
+  //validações
+  if trim(ednome.Text) = '' then
+  begin
+     ShowMessage('Informe o nome!');
+     ednome.SetFocus;
+     exit;
+  end;
+
+  if trim(edendereco.text) = '' then
+  begin
+     ShowMessage('Informe o endereço!');
+     edendereco.setfocus;
+     exit;
+  end;
+
+  if trim(metelefone.Text) = '' then
+  begin
+     ShowMessage('Informe o telefone!');
+     metelefone.SetFocus;
+     exit;
+  end;
+
+  if StrToDateDef(menascimento.Text,0) = 0 then
+  begin
+     ShowMessage('Data inválida!');
+     menascimento.SetFocus;
+     exit;
+  end;
+
+  if trim(edcidade.Text) = '' then
+  begin
+     ShowMessage('Informe a Cidade!');
+     edcidade.setfocus;
+     exit;
+  end;
+
+  if trim(eduf.Text) = '' then
+  begin
+     ShowMessage('Informe a Unidade Federativa!');
+  end;
+
+
+  Zquery1.close;
+  if codigo = 0 then
+  begin
+  // se entrar aqui é inclusão
+    Zquery1.sql.Text :=
+        'insert into cliente (nome, endereco, telefone, nascimento, cidade, uf) ' +
+        'values (:nome, :endereco, :telefone, :nascimento, :cidade, :uf) ';
+  end
+  else
+  begin
+    Zquery1.sql.Text :=
+        'update cliente set ' +
+        'nome= :nome, endereco= :endereco, ' +
+        'telefone= :telefone, nascimento= :nascimento, cidade= :cidade, uf= :uf ' +
+        'where codigo = :codigo';
+    Zquery1.ParamByName('codigo').asinteger := codigo;
+  end;
+
+  Zquery1.ParamByName('nome').AsString := ednome.text;
+  Zquery1.ParamByName('endereco').AsString := edendereco.text;
+  Zquery1.ParamByName('telefone').Asinteger := strtoint(metelefone.text);
+  Zquery1.ParamByName('nascimento').Asdate := strtodate(menascimento.text);
+  zquery1.ParamByName('cidade').AsString := edcidade.text;
+  zquery1.ParamByName('uf').AsString := eduf.Text;
+
+  zquery1.ExecSQL;
+  ModalResult:= mrOk;
+
+
+end;
+
+procedure TForm2.edcodigoKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+    SelectNext(Self.ActiveControl,true,true);
+end;
+
+procedure TForm2.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  label6.Caption:= 'código da tecla: ' + inttostr(ord(key));
+end;
+
+end.

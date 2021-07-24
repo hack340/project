@@ -1,0 +1,57 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, DB, DBTables, StdCtrls, unit2;
+
+type
+  TForm1 = class(TForm)
+    Query1: TQuery;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    btnnovo: TButton;
+    btnalterar: TButton;
+    procedure btnalterarClick(Sender: TObject);
+    procedure btnnovoClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  query1.Close;
+  query1.SQL.Text:=
+      'select * from cliente.dbf';
+  query1.Open;
+end;
+
+procedure TForm1.btnnovoClick(Sender: TObject);
+begin
+  application.createform(tform2, form2);
+  form2.codigo:= 0;
+  form2.ShowModal;
+  form2.Free;
+end;
+
+procedure TForm1.btnalterarClick(Sender: TObject);
+begin
+  application.createform(tform2, form2);
+  form2.codigo:= query1.FieldByName('codigo').AsInteger;
+  form2.ShowModal;
+  form2.Free;
+end;
+
+end.

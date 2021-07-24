@@ -1,0 +1,27 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Width = 271
+  Height = 188
+  Caption = 'Form1'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ZConnection1: TZConnection
+    Protocol = 'postgresql-8'
+    HostName = '192.168.2.2'
+    Port = 5432
+    Database = 'aula_senac'
+    User = 'postgres'
+    Password = '12345ab'
+    TransactIsolationLevel = tiReadCommitted
+    Left = 40
+    Top = 24
+  end
+end

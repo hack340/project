@@ -1,0 +1,33 @@
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ComCtrls;
+
+type
+  TF_produtos = class(TForm)
+    stBar2: TStatusBar;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  F_produtos: TF_produtos;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TF_produtos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+F_produtos = nil;
+end;
+
+end.

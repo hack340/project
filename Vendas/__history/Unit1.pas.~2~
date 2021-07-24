@@ -1,0 +1,29 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Buttons, ExtCtrls, ComCtrls;
+
+type
+  TF_inicial = class(TForm)
+    stBar_inicial: TStatusBar;
+    Panel1: TPanel;
+    btn_produtos: TSpeedButton;
+    btn_clientes: TSpeedButton;
+    btn_vendas: TSpeedButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  F_inicial: TF_inicial;
+
+implementation
+
+{$R *.dfm}
+
+end.

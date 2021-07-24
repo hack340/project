@@ -1,0 +1,37 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, DB, DBTables, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Query1: TQuery;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  query1.Close;
+  query1.SQL.Text:=
+      'select * from cliente.dbf';
+  query1.Open;
+end;
+
+end.

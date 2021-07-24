@@ -1,0 +1,81 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Width = 584
+  Height = 197
+  Caption = 'Form1'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  DesignSize = (
+    568
+    159)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnconectar: TButton
+    Left = 8
+    Top = 0
+    Width = 75
+    Height = 25
+    Caption = 'Conectar'
+    TabOrder = 0
+    OnClick = btnconectarClick
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 32
+    Width = 564
+    Height = 126
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    DataSource = DataSource1
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object btnnovo: TButton
+    Left = 104
+    Top = 0
+    Width = 75
+    Height = 25
+    Caption = 'Novo'
+    TabOrder = 2
+    OnClick = btnnovoClick
+  end
+  object btnalterar: TButton
+    Left = 192
+    Top = 0
+    Width = 75
+    Height = 25
+    Caption = 'Alterar'
+    TabOrder = 3
+    OnClick = btnalterarClick
+  end
+  object ZConnection1: TZConnection
+    Protocol = 'postgresql-8'
+    HostName = '192.168.2.2'
+    Port = 5432
+    Database = 'aula_senac'
+    User = 'postgres'
+    Password = '12345ab'
+    TransactIsolationLevel = tiReadCommitted
+    Top = 128
+  end
+  object ZQuery1: TZQuery
+    Connection = ZConnection1
+    Params = <>
+    Left = 32
+    Top = 128
+  end
+  object DataSource1: TDataSource
+    DataSet = ZQuery1
+    Left = 64
+    Top = 128
+  end
+end

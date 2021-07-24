@@ -1,0 +1,129 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Width = 461
+  Height = 240
+  Caption = 'Form2'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 21
+    Top = 0
+    Width = 37
+    Height = 13
+    Caption = 'Codigo:'
+  end
+  object Label2: TLabel
+    Left = 27
+    Top = 24
+    Width = 31
+    Height = 13
+    Caption = 'Nome:'
+  end
+  object Label3: TLabel
+    Left = 9
+    Top = 48
+    Width = 49
+    Height = 13
+    Caption = 'Endere'#231'o:'
+  end
+  object Label4: TLabel
+    Left = 12
+    Top = 72
+    Width = 46
+    Height = 13
+    Caption = 'Telefone:'
+  end
+  object Label5: TLabel
+    Left = 17
+    Top = 96
+    Width = 41
+    Height = 13
+    Caption = 'Dt Nasc:'
+  end
+  object Bevel1: TBevel
+    Left = 0
+    Top = 120
+    Width = 441
+    Height = 50
+    Shape = bsBottomLine
+  end
+  object Bevel2: TBevel
+    Left = 64
+    Top = 0
+    Width = 50
+    Height = 169
+    Shape = bsLeftLine
+  end
+  object edcodigo: TEdit
+    Left = 72
+    Top = 0
+    Width = 121
+    Height = 21
+    TabOrder = 0
+  end
+  object ednome: TEdit
+    Left = 72
+    Top = 24
+    Width = 193
+    Height = 21
+    TabOrder = 1
+  end
+  object edendereco: TEdit
+    Left = 72
+    Top = 48
+    Width = 249
+    Height = 21
+    TabOrder = 2
+  end
+  object metelefone: TMaskEdit
+    Left = 72
+    Top = 72
+    Width = 120
+    Height = 21
+    EditMask = '9999-9999;0;_'
+    MaxLength = 9
+    TabOrder = 3
+  end
+  object menascimento: TMaskEdit
+    Left = 72
+    Top = 96
+    Width = 120
+    Height = 21
+    EditMask = '00/00/0000;1;_'
+    MaxLength = 10
+    TabOrder = 4
+    Text = '  /  /    '
+  end
+  object btngravar: TButton
+    Left = 248
+    Top = 176
+    Width = 75
+    Height = 25
+    Caption = 'Gravar'
+    TabOrder = 5
+  end
+  object btncancelar: TButton
+    Left = 336
+    Top = 176
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 6
+    OnClick = btncancelarClick
+  end
+  object ZQuery1: TZQuery
+    Connection = Form1.ZConnection1
+    Params = <>
+    Left = 416
+    Top = 176
+  end
+end
